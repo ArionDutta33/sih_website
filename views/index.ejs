@@ -9,48 +9,109 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        .container {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            background: #000000;
+            background: radial-gradient(#ffffff33 1px, #00091d 1px);
+            background-size: 20px 20px;
+        }
+
+        .arrow-down {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            /* Hidden initially */
+            z-index: 1000;
+            /* Ensure it is above other content */
+        }
+
+        .arrow-down.visible {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-down {
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            position: fixed;
+            /* Make it fixed to the viewport */
+            top: 0;
+            left: 0;
+            transform: translateY(-100%);
+            /* Start off-screen */
+            transition: transform 0.5s ease-out;
+            z-index: 999;
+            /* Ensure it is below the arrow */
+        }
+
+        .menu-down.show {
+            transform: translateY(0);
+            /* Slide into view */
+        }
+
+        .content {
+            height: 1500px;
+            /* Large height to enable scrolling */
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div
-        class="container  relative text-white min-h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
-
+    <div class="container">
         <div class="navbar flex px-6 py-6 justify-between">
             <div class="logo">DFDetect</div>
             <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
         </div>
-        <div class="arrow-down hidden flex items-center justify-center ">
+        <div class="arrow-down">
             <i class="fa-solid fa-arrow-down px-2 py-2 border rounded-full"></i>
         </div>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quaerat iste sunt esse totam repellat
-        aliquam laborum vel voluptatum earum perspiciatis sit, iusto dignissimos ipsa sint quae debitis ut ea harum
-        aliquid deleniti asperiores laudantium. Et, voluptates cum modi, repellat earum quia autem odit eum quidem
-        dolore nisi similique corrupti incidunt aliquam illum exercitationem maxime expedita temporibus. Eveniet magni
-        hic voluptate porro vero quis placeat repellendus temporibus officia, aliquam deleniti dolore illum a doloremque
-        non nobis. Est et impedit voluptates dolore deleniti, blanditiis autem dolorem consequatur distinctio a
-        voluptatum ipsum quae earum maxime sequi quisquam enim doloribus architecto beatae vel quo. Veniam quam ad
-        voluptatibus similique, praesentium dolorem totam, dolore alias harum, at quasi corrupti magnam. Explicabo, et
-        sunt. A amet et rerum voluptatum dignissimos error dolor. Quibusdam vero tempore et. Exercitationem ullam facere
-        non modi soluta est, ipsa dolorem commodi. Omnis nostrum odit ad laborum! Similique illo ea repellendus placeat
-        magni nostrum nihil voluptates dolor vel voluptatum veritatis animi cupiditate laborum velit saepe facilis
-        maxime odit, aut expedita. Qui repellendus ducimus libero nulla nobis animi voluptatem veritatis similique
-        dolorum ea explicabo iste vitae maiores quisquam esse, exercitationem magnam rerum expedita voluptates nihil
-        sint minus et non! Necessitatibus sed expedita laudantium fuga maiores laborum cumque. Quia iure praesentium
-        officia voluptatum pariatur laboriosam, ducimus dolore fugiat facere reiciendis. Quibusdam laboriosam pariatur
-        quos tempore consequuntur, dolorum ipsam neque facere similique aspernatur rerum fugit consequatur! Ad, quaerat
-        tempore facilis maxime voluptate sequi illo, dolorum vitae repellendus ea officiis. Voluptate distinctio rerum
-        quia suscipit iure! Laboriosam mollitia aliquam, odio explicabo nesciunt consequuntur labore placeat, natus
-        eaque delectus cupiditate, aliquid quaerat sit magnam nostrum numquam totam illo iure at modi amet repellendus!
-        Reiciendis, a dicta neque praesentium nulla nesciunt, quaerat voluptatum minus earum similique cumque quae
-        deserunt eveniet optio sunt vero voluptatem id recusandae. Similique!
-
+        <div class="menu-down">
+            <!-- Your menu content goes here -->
+            <p>Menu Content</p>
+        </div>
+        <div class="content">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quaerat iste sunt esse totam repellat
+            aliquam laborum vel voluptatum earum perspiciatis sit, iusto dignissimos ipsa sint quae debitis ut ea harum
+            aliquid deleniti asperiores laudantium...
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../js/index.js"></script>
+    <script>
+        const arrowDown = document.querySelector(".arrow-down");
+        const menuDown = document.querySelector(".menu-down");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) {
+                arrowDown.classList.add("visible");
+            } else {
+                arrowDown.classList.remove("visible");
+            }
+        });
+
+        arrowDown.addEventListener("click", () => {
+            menuDown.classList.toggle("show");
+        });
+    </script>
 </body>
 
 </html>
