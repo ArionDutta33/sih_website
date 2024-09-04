@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get("/", (req, res) => {
     res.render("index")
 })
-app.get("/uplaod", (req, res) => {
+app.get("/upload", (req, res) => {
     res.render("upload")
 })
 app.listen(3000, () => {
