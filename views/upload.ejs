@@ -24,9 +24,10 @@
         <div class="video-example mx-4 ">
             <video src="../video/deepfake.mp4" class="rounded-lg" autoplay loop muted></video>
         </div>
-        <form action="" class="flex flex-col mt-4 items-center bg-white p-6 rounded-lg max-w-sm mx-auto">
+        <form action="/upload" method="POST" enctype="multipart/form-data"
+            class="flex flex-col mt-4 items-center bg-white p-6 rounded-lg max-w-sm mx-auto">
             <label for="file-upload" class="block mb-4 text-gray-700 font-semibold">Upload File:</label>
-            <input type="file" id="file-upload"
+            <input type="file" id="file-upload" name="deepfake"
                 class="block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-white file:bg-blue-600 hover:file:bg-blue-700 border border-gray-300 rounded-md mb-4 cursor-pointer">
             <button
                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">Submit</button>

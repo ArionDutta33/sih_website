@@ -27,7 +27,7 @@ app.get("/upload", (req, res) => {
 })
 
 app.post("/upload", upload.single("deepfake"), (req, res) => {
-    console.log(req.body)
+    console.log(req.file)
 })
 
 
