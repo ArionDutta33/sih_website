@@ -6,13 +6,24 @@ const express = require("express")
 const app = express()
 const mongoose = require("mongoose")
 const ejsMate = require("ejs-mate")
+const asyncHandler = require("express-async-handler")
 const path = require("path")
+//
+const Prediction = require("./models/predictionModel")
+//
 const { cloudinary } = require("./utils/cloudinary");
 const multer = require('multer');
 const { storage } = require('./utils/cloudinary');
 const upload = multer({ storage });
 
 //
+//*connect
+mongoose.connect("mongodb://127.0.0.1:27017/deepfakeDB").then(() => {
+    console.log("mongodb up")
+}).catch((error) => {
+    console.log(error, "error")
+})
+//*
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
@@ -26,8 +37,24 @@ app.get("/upload", (req, res) => {
     res.render("upload")
 })
 
-app.post("/upload", upload.single("deepfake"), (req, res) => {
-    console.log(req.file)
+app.post("/upload", upload.single("deepfake"), async (req, res) => {
+    try {
+        if (!req.file.path) {
+            throw new Error("Something went wrong")
+        }
+        const { path } = req.file
+        const predcition = new Prediction({
+            result: "This is a placeholder for result hahahahaha lol",
+            video: path
+        })
+        await predcition.save()
+
+        console.log(predcition)
+        return res.redirect("/")
+    } catch (error) {
+        console.log("error", error)
+        throw new Error("Something went wrong")
+    }
 })
 
 

@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'YelpCamp',
+        folder: 'Deepfake',
         allowedFormats: ['mp4', 'mov', 'avi', 'wmv', 'flv'],
         resource_type: "video"
     }
