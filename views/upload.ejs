@@ -18,6 +18,7 @@
         .slide {
             min-width: 100%;
             box-sizing: border-box;
+            position: relative;
         }
 
         .arrow {
@@ -47,6 +48,19 @@
 
         #mobile-menu {
             transform: translateX(100%);
+        }
+
+        /* Overlay styling */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -86,38 +100,54 @@
     <section class="example border mt-6 px-6 text-sm">
         Example of Plant diseases
     </section>
+
     <!-- Slider -->
     <section class="slider-container relative overflow-hidden mt-6 mx-6">
         <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
         <div class="slider flex">
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide  flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335"
-                    alt=""></div>
-            <div class="slide bg-flex items-center justify-center text-3xl"><img
-                    src="https://www.familyhandyman.com/wp-content/uploads/2020/04/Powdery-Mildew-GettyImages-1090508010.jpg?fit=335,335"
-                    alt=""></div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Black Spot</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Tobacco Mosaic Virus</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Fusarium Wilt</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Verticillium Fungi</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Sooty Mold</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Snow Mold</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Rust</div>
+            </div>
+            <div class="slide flex items-center justify-center text-3xl">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/04/Powdery-Mildew-GettyImages-1090508010.jpg?fit=335,335"
+                    alt="">
+                <div class="overlay">Powdery Mildew</div>
+            </div>
         </div>
         <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
     </section>
-
 
     <!-- Form Section -->
     <section class="flex flex-col justify-center items-center mt-4">
