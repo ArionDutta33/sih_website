@@ -33,10 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get("/", (req, res) => {
     res.render("index")
 })
-app.get("/upload", (req, res) => {
-    res.render("upload")
+app.get("/info", (req, res) => {
+    res.render("info")
 })
-
+app.get("/result", (req, res) => {
+    res.render("result")
+})
 app.post("/upload", upload.single("disease"), async (req, res) => {
     try {
         // console.log(req.body);
@@ -54,7 +56,7 @@ app.post("/upload", upload.single("disease"), async (req, res) => {
         await predcition.save()
 
         console.log(predcition)
-        return res.redirect("/")
+        return res.redirect("/result")
     } catch (error) {
         console.log("error", error)
         throw new Error("Something went wrong")
