@@ -4,38 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Complete Example</title>
     <link rel="stylesheet" href="../css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 1rem;
+        }
+
+        .arrow-right {
+            right: 1rem;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+        }
+
+        #mobile-menu {
+            transform: translateX(100%);
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container min-h-screen">
-        <div class="navbar  flex px-6 py-6 justify-between text-blue-500 border-b  ">
-            <div class="logo font-bold text-xl ">DFDetect</div>
-            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
+    <!-- Navbar -->
+    <nav class="navbar flex items-center justify-between py-4 border-b border-gray-300 px-4">
+        <div class="logo font-bold text-xl text-blue-500">Disease <span class="text-black">Detect</span></div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <a href="/" class="text-lg hover:text-blue-500">Home</a>
+            <a href="/about" class="text-lg hover:text-blue-500">About</a>
+            <a href="/services" class="text-lg hover:text-blue-500">Services</a>
+            <a href="/contact" class="text-lg hover:text-blue-500">Contact</a>
         </div>
-        <div class="div border-b font-bold flex justify-center items-center gap-2 py-4 text-xl">THIS IS <span
-                class="text-red-500">NOT</span> MORGAN
-            FREEMAN
+        <div class="menu-icon text-2xl cursor-pointer text-blue-500 lg:hidden">
+            <i class="fa-solid fa-bars"></i>
         </div>
-        <div class="video-example mx-4 ">
-            <video src="../video/deepfake.mp4" class="rounded-lg" autoplay loop muted></video>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-gray-800 bg-opacity-80 z-50 lg:hidden transition-transform duration-300">
+        <div class="flex justify-end p-4">
+            <button id="close-menu" class="text-white text-2xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-        <form action="/upload" method="POST" enctype="multipart/form-data"
-            class="flex flex-col mt-4 items-center bg-white p-6 rounded-lg max-w-sm mx-auto">
-            <label for="file-upload" class="block mb-4 text-gray-700 font-semibold">Upload File:</label>
-            <input type="file" id="file-upload" name="deepfake"
-                class="block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-white file:bg-blue-600 hover:file:bg-blue-700 border border-gray-300 rounded-md mb-4 cursor-pointer">
-            <button
-                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out">Submit</button>
-        </form>
-
-
-
+        <div class="flex flex-col items-center">
+            <a href="/" class="text-white text-xl py-4 hover:text-blue-500">Home</a>
+            <a href="/about" class="text-white text-xl py-4 hover:text-blue-500">About</a>
+            <a href="/services" class="text-white text-xl py-4 hover:text-blue-500">Services</a>
+            <a href="/contact" class="text-white text-xl py-4 hover:text-blue-500">Contact</a>
+        </div>
     </div>
+
+    <!-- Example Section -->
+    <section class="example border mt-6 px-6 text-sm">
+        Example of Plant diseases
+    </section>
+    <!-- Slider -->
+    <section class="slider-container relative overflow-hidden mt-6 mx-6">
+        <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
+        <div class="slider flex">
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide  flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335"
+                    alt=""></div>
+            <div class="slide bg-flex items-center justify-center text-3xl"><img
+                    src="https://www.familyhandyman.com/wp-content/uploads/2020/04/Powdery-Mildew-GettyImages-1090508010.jpg?fit=335,335"
+                    alt=""></div>
+        </div>
+        <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
+    </section>
+
+
+    <!-- Form Section -->
+    <section class="flex flex-col justify-center items-center mt-4">
+        <form action="" class="flex flex-col items-center">
+            <input type="file" class="mb-4 p-2 border rounded-lg">
+            <button class="px-6 mt-6 rounded-lg bg-blue-500 text-white py-2">Submit</button>
+        </form>
+    </section>
+
+    <script>
+        const slider = document.querySelector('.slider');
+        let index = 0;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n >= slides.length) {
+                index = 0;
+            } else if (n < 0) {
+                index = slides.length - 1;
+            } else {
+                index = n;
+            }
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function prevSlide() {
+            showSlide(index - 1);
+        }
+
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+
+        // Mobile menu functionality
+        const menuIcon = document.querySelector('.menu-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+
+        menuIcon.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(0)';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(100%)';
+        });
+    </script>
 </body>
 
 </html>
