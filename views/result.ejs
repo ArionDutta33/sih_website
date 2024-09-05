@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <link rel="stylesheet" href="../css/output.css"> <!-- Adjust path as needed -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .upload-area {
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .upload-area__header {
+            padding: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+        }
+
+        .upload-area__title {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .upload-area__paragraph {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        .upload-area__tooltip {
+            display: inline-block;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .drop-zoon {
+            padding: 20px;
+            border: 2px dashed #007BFF;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            background-color: #f0f8ff;
+        }
+
+        .drop-zoon__icon {
+            font-size: 40px;
+            color: #007BFF;
+        }
+
+        .drop-zoon__paragraph {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .drop-zoon__loading-text {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #007BFF;
+        }
+
+        .drop-zoon__preview-image {
+            max-width: 100%;
+            height: auto;
+            display: none;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .file-details {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .file-details__title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .uploaded-file {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .uploaded-file__icon-container {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .uploaded-file__icon {
+            font-size: 24px;
+        }
+
+        .uploaded-file__info {
+            flex: 1;
+        }
+
+        .uploaded-file__name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .uploaded-file__counter {
+            font-size: 14px;
+            color: #007BFF;
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Upload Area -->
+    <div id="uploadArea" class="upload-area">
+        <!-- Header -->
+        <div class="upload-area__header">
+            <h1 class="upload-area__title">Upload your file</h1>
+            <p class="upload-area__paragraph">
+                File should be an image
+                <strong class="upload-area__tooltip">
+                    Like
+                    <span class="upload-area__tooltip-data"></span> <!-- Data Will be Comes From JS -->
+                </strong>
+            </p>
+        </div>
+        <!-- End Header -->
+
+        <!-- Drop Zone -->
+        <div id="dropZoon" class="upload-area__drop-zoon drop-zoon">
+            <span class="drop-zoon__icon">
+                <i class='bx bxs-file-image'></i>
+            </span>
+            <p class="drop-zoon__paragraph">Drop your file here or Click to browse</p>
+            <span id="loadingText" class="drop-zoon__loading-text">Please Wait</span>
+            <img src="" alt="Preview Image" id="previewImage" class="drop-zoon__preview-image" draggable="false">
+            <input type="file" id="fileInput" class="drop-zoon__file-input" accept="image/*">
+        </div>
+        <!-- End Drop Zone -->
+
+        <!-- File Details -->
+        <div id="fileDetails" class="upload-area__file-details file-details">
+            <h3 class="file-details__title">Uploaded File</h3>
+
+            <div id="uploadedFile" class="uploaded-file">
+                <div class="uploaded-file__icon-container">
+                    <i class='bx bxs-file-blank uploaded-file__icon'></i>
+                    <span class="uploaded-file__icon-text"></span> <!-- Data Will be Comes From JS -->
+                </div>
+
+                <div id="uploadedFileInfo" class="uploaded-file__info">
+                    <span class="uploaded-file__name">Project 1</span>
+                    <span class="uploaded-file__counter">0%</span>
+                </div>
+            </div>
+        </div>
+        <!-- End File Details -->
+    </div>
+    <!-- End Upload Area -->
+
+    <script>
+        // Select Upload-Area
+        const uploadArea = document.querySelector('#uploadArea');
+
+        // Select Drop-Zoon Area
+        const dropZoon = document.querySelector('#dropZoon');
+
+        // Loading Text
+        const loadingText = document.querySelector('#loadingText');
+
+        // Select File Input
+        const fileInput = document.querySelector('#fileInput');
+
+        // Select Preview Image
+        const previewImage = document.querySelector('#previewImage');
+
+        // File-Details Area
+        const fileDetails = document.querySelector('#fileDetails');
+
+        // Uploaded File
+        const uploadedFile = document.querySelector('#uploadedFile');
+
+        // Uploaded File Info
+        const uploadedFileInfo = document.querySelector('#uploadedFileInfo');
+
+        // Uploaded File Name
+        const uploadedFileName = document.querySelector('.uploaded-file__name');
+
+        // Uploaded File Icon
+        const uploadedFileIconText = document.querySelector('.uploaded-file__icon-text');
+
+        // Uploaded File Counter
+        const uploadedFileCounter = document.querySelector('.uploaded-file__counter');
+
+        // ToolTip Data
+        const toolTipData = document.querySelector('.upload-area__tooltip-data');
+
+        // Images Types
+        const imagesTypes = [
+            "jpeg",
+            "png",
+            "svg",
+            "gif"
+        ];
+
+        // Append Images Types Array Inside Tooltip Data
+        toolTipData.innerHTML = [...imagesTypes].join(', .');
+
+        // When (drop-zoon) has (dragover) Event 
+        dropZoon.addEventListener('dragover', function (event) {
+            // Prevent Default Behavior 
+            event.preventDefault();
+
+            // Add Class (drop-zoon--over) On (drop-zoon)
+            dropZoon.classList.add('drop-zoon--over');
+        });
+
+        // When (drop-zoon) has (dragleave) Event 
+        dropZoon.addEventListener('dragleave', function (event) {
+            // Remove Class (drop-zoon--over) from (drop-zoon)
+            dropZoon.classList.remove('drop-zoon--over');
+        });
+
+        // When (drop-zoon) has (drop) Event 
+        dropZoon.addEventListener('drop', function (event) {
+            // Prevent Default Behavior 
+            event.preventDefault();
+
+            // Remove Class (drop-zoon--over) from (drop-zoon)
+            dropZoon.classList.remove('drop-zoon--over');
+
+            // Select The Dropped File
+            const file = event.dataTransfer.files[0];
+
+            // Call Function uploadFile(), And Send To Her The Dropped File :)
+            uploadFile(file);
+        });
+
+        // When (drop-zoon) has (click) Event 
+        dropZoon.addEventListener('click', function (event) {
+            // Click The (fileInput)
+            fileInput.click();
+        });
+
+        // When (fileInput) has (change) Event 
+        fileInput.addEventListener('change', function (event) {
+            // Select The Chosen File
+            const file = event.target.files[0];
+
+            // Call Function uploadFile(), And Send To Her The Chosen File :)
+            uploadFile(file);
+        });
+
+        // Upload File Function
+        function uploadFile(file) {
+            // FileReader()
+            const fileReader = new FileReader();
+            // File Type 
+            const fileType = file.type;
+            // File Size 
+            const fileSize = file.size;
+
+            // If File Is Passed from the (File Validation) Function
+            if (fileValidate(fileType, fileSize)) {
+                // Add Class (drop-zoon--Uploaded) on (drop-zoon)
+                dropZoon.classList.add('drop-zoon--Uploaded');
+
+                // Show Loading-text
+                loadingText.style.display = "block";
+                // Hide Preview Image
+                previewImage.style.display = 'none';
+
+                // Remove Class (uploaded-file--open) From (uploadedFile)
+                uploadedFile.classList.remove('uploaded-file--open');
+                // Remove Class (uploaded-file__info--active) from (uploadedFileInfo)
+                uploadedFileInfo.classList.remove('uploaded-file__info--active');
+
+                // After File Reader Loaded 
+                fileReader.addEventListener('load', function () {
+                    // After Half Second 
+                    setTimeout(function () {
+                        // Add Class (upload-area--open) On (uploadArea)
+                        uploadArea.classList.add('upload-area--open');
+
+                        // Hide Loading-text (please-wait) Element
+                        loadingText.style.display = "none";
+                        // Show Preview Image
+                        previewImage.style.display = 'block';
+
+                        // Add Class (file-details--open) On (fileDetails)
+                        fileDetails.classList.add('file-details--open');
+                        // Add Class (uploaded-file--open) On (uploadedFile)
+                        uploadedFile.classList.add('uploaded-file--open');
+                        // Add Class (uploaded-file__info--active) On (uploadedFileInfo)
+                        uploadedFileInfo.classList.add('uploaded-file__info--active');
+                    }, 500); // 0.5s
+
+                    // Add The (fileReader) Result Inside (previewImage) Source
+                    previewImage.setAttribute('src', fileReader.result);
+
+                    // Add File Name Inside Uploaded File Name
+                    uploadedFileName.innerHTML = file.name;
+
+                    // Call Function progressMove();
+                    progressMove();
+                });
+
+                // Read (file) As Data Url 
+                fileReader.readAsDataURL(file);
+            } else { // Else
+
+                this; // (this) Represent The fileValidate(fileType, fileSize) Function
+
+            };
+        };
+
+        // Progress Counter Increase Function
+        function progressMove() {
+            // Counter Start
+            let counter = 0;
+
+            // After 600ms 
+            setTimeout(() => {
+                // Every 100ms
+                let counterIncrease = setInterval(() => {
+                    // If (counter) is equle 100 
+                    if (counter === 100) {
+                        // Stop (Counter Increase)
+                        clearInterval(counterIncrease);
+                    } else { // Else
+                        // plus 10 on counter
+                        counter = counter + 10;
+                        // add (counter) vlaue inisde (uploadedFileCounter)
+                        uploadedFileCounter.innerHTML = `${counter}%`
+                    }
+                }, 100);
+            }, 600);
+        };
+
+        // Simple File Validate Function
+        function fileValidate(fileType, fileSize) {
+            // File Type Validation
+            let isImage = imagesTypes.filter((type) => fileType.indexOf(`image/${type}`) !== -1);
+
+            // If The Uploaded File Type Is 'jpeg'
+            if (isImage[0] === 'jpeg') {
+                // Add Inside (uploadedFileIconText) The Value "JPG"
+                uploadedFileIconText.innerHTML = "JPG";
+                // Else If The Uploaded File Type Is 'png'
+            } else if (isImage[0] === 'png') {
+                // Add Inside (uploadedFileIconText) The Value "PNG"
+                uploadedFileIconText.innerHTML = "PNG";
+                // Else If The Uploaded File Type Is 'svg'
+            } else if (isImage[0] === 'svg') {
+                // Add Inside (uploadedFileIconText) The Value "SVG"
+                uploadedFileIconText.innerHTML = "SVG";
+                // Else If The Uploaded File Type Is 'gif'
+            } else if (isImage[0] === 'gif') {
+                // Add Inside (uploadedFileIconText) The Value "GIF"
+                uploadedFileIconText.innerHTML = "GIF";
+            };
+
+            // Check If File Size Is Less Than 10MB
+            if (fileSize < 10485760) {
+                return true;
+            } else {
+                // If File Size Is Greater Than 10MB Show Alert
+                alert("The uploaded file must be less than 10MB");
+                return false;
+            }
+        };
+    </script>
+</body>
+
+</html>
