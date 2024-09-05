@@ -56,6 +56,58 @@
         .menu-down.show {
             transform: translateY(0);
         }
+
+        /* Side Menu - Positioned on the right */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            /* Start off-screen from the right */
+            width: 300px;
+            height: 100%;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            /* Adjust shadow direction */
+            transition: transform 0.4s ease;
+            z-index: 1000;
+        }
+
+        .side-menu.open {
+            transform: translateX(-300px);
+            /* Move into view from the right */
+        }
+
+        .side-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-menu ul li {
+            margin: 20px 0;
+        }
+
+        .side-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -68,10 +120,20 @@
         <div class="arrow-up">
             <i class="fa-solid fa-arrow-up text-black px-2 py-2 border rounded-full"></i>
         </div>
-        <div class="menu-down">
-            <!-- Your menu content goes here -->
-            <p>Menu Content</p>
+
+        <!-- Side Menu -->
+        <div class="side-menu">
+            <!-- Close Button -->
+            <button class="close-btn">&times;</button>
+
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
         </div>
+
         <div class="content4">
             <div class="intro-text px-6 py-4">
                 <div class="text-5xl mt-8 font-bold"><span class="text-blue-500">DETECT</span> <br> DISEASES
@@ -89,10 +151,10 @@
                             <strong
                                 class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">TensorFlow:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">We have trained our models using TensorFlow, an
-                                open-source
-                                framework developed by Google. It provides a comprehensive ecosystem for building and
-                                deploying machine
-                                learning models, particularly deep learning models.</p>
+                                open-source framework
+                                developed by Google. It provides a comprehensive ecosystem for building and deploying
+                                machine learning
+                                models, particularly deep learning models.</p>
                         </div>
 
                         <div class="flex flex-col md:flex-row md:items-start">
@@ -108,8 +170,8 @@
                             <strong
                                 class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Scikit-Learn:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">Scikit-Learn provides simple and efficient tools
-                                for data analysis
-                                and traditional machine learning tasks, including classification, regression, and
+                                for data analysis and
+                                traditional machine learning tasks, including classification, regression, and
                                 clustering.</p>
                         </div>
 
@@ -118,8 +180,8 @@
                             <p class="text-gray-700 md:ml-4 md:w-3/4">PyTorch, developed by Facebook’s AI Research lab,
                                 is known for its
                                 dynamic computation graph. It offers flexibility in building and modifying models,
-                                making it suitable
-                                for both research and production.</p>
+                                making it suitable for
+                                both research and production.</p>
                         </div>
 
                         <div class="flex flex-col md:flex-row md:items-start">
@@ -151,9 +213,8 @@
                                 recall.</p>
                         </div>
                     </div>
+
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -163,6 +224,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const arrowUp = document.querySelector(".arrow-up");
+        const menuIcon = document.querySelector(".menu-icon");
+        const sideMenu = document.querySelector(".side-menu");
+        const closeButton = document.querySelector(".close-btn");
 
         window.addEventListener("scroll", () => {
             if (window.scrollY > 200) {
@@ -177,6 +241,16 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Toggle the side menu on menu icon click
+        menuIcon.addEventListener("click", () => {
+            sideMenu.classList.add("open");
+        });
+
+        // Close the side menu on close button click
+        closeButton.addEventListener("click", () => {
+            sideMenu.classList.remove("open");
         });
     </script>
 </body>
