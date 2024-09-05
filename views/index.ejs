@@ -9,208 +9,111 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            position: relative;
-            min-height: 100vh;
-            width: 100%;
-            background-size: 20px 20px;
-        }
-
-        .arrow-up {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-        }
-
-        .arrow-up.visible {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-down {
-            height: 100vh;
-            width: 100%;
-            background: #fff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translateY(-100%);
-            transition: transform 0.5s ease-out;
-            z-index: 999;
-        }
-
-        .menu-down.show {
-            transform: translateY(0);
-        }
-
-        /* Side Menu - Positioned on the right */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            /* Start off-screen from the right */
-            width: 300px;
-            height: 100%;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-            /* Adjust shadow direction */
-            transition: transform 0.4s ease;
-            z-index: 1000;
-        }
-
-        .side-menu.open {
-            transform: translateX(-300px);
-            /* Move into view from the right */
-        }
-
-        .side-menu ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .side-menu ul li {
-            margin: 20px 0;
-        }
-
-        .side-menu ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .menu-icon {
-            cursor: pointer;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="container">
-        <div class="navbar flex px-6 py-6 justify-between text-blue-500 border-b">
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4">
+        <!-- Navbar -->
+        <div class="navbar flex items-center justify-between py-4 border-b border-gray-300">
             <div class="logo font-bold text-xl">DiseaseDetect</div>
-            <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
-        </div>
-        <div class="arrow-up">
-            <i class="fa-solid fa-arrow-up text-black px-2 py-2 border rounded-full"></i>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="/" class="text-lg hover:text-blue-500">Home</a>
+                <a href="/about" class="text-lg hover:text-blue-500">About</a>
+                <a href="/services" class="text-lg hover:text-blue-500">Services</a>
+                <a href="/contact" class="text-lg hover:text-blue-500">Contact</a>
+            </div>
+            <div class="menu-icon text-2xl cursor-pointer text-blue-500 lg:hidden">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
 
-        <!-- Side Menu -->
-        <div class="side-menu">
+        <!-- Arrow Up Button -->
+        <div
+            class="arrow-up fixed bottom-4 right-4 bg-white border border-gray-300 p-2 rounded-full cursor-pointer hidden lg:flex">
+            <i class="fa-solid fa-arrow-up text-black"></i>
+        </div>
+
+        <!-- Side Menu for Mobile Only -->
+        <div
+            class="side-menu fixed inset-0 bg-gray-800 text-white p-4 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
             <!-- Close Button -->
-            <button class="close-btn">&times;</button>
-
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/services">Services</a></li>
-                <li><a href="/contact">Contact</a></li>
+            <button class="close-btn absolute top-4 right-4 text-2xl">&times;</button>
+            <ul class="mt-8 flex flex-col space-y-4">
+                <li><a href="/" class="block py-2 text-lg hover:text-blue-400">Home</a></li>
+                <li><a href="/about" class="block py-2 text-lg hover:text-blue-400">About</a></li>
+                <li><a href="/services" class="block py-2 text-lg hover:text-blue-400">Services</a></li>
+                <li><a href="/contact" class="block py-2 text-lg hover:text-blue-400">Contact</a></li>
             </ul>
         </div>
 
-        <div class="content4">
-            <div class="intro-text px-6 py-4">
-                <div class="text-5xl mt-8 font-bold"><span class="text-blue-500">DETECT</span> <br> DISEASES
+        <!-- Content Section -->
+        <div class="content4 pt-8 pb-16">
+            <div class="intro-text text-center px-4">
+                <div class="text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="text-blue-500">DETECT</span> <br> DISEASES
                 </div>
-
-                <button class="my-4 border px-6 py-2 bg-blue-500 text-white text-xl rounded-full"><a href="/upload">Get
-                        Started</a></button>
-                <div class="description p-8 bg-gray-100 rounded-lg shadow-lg mx-auto max-w-4xl">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">Machine
-                        Learning Technologies
-                        Used</h2>
+                <button class="my-4 border px-6 py-2 bg-blue-500 text-white text-xl rounded-full">
+                    <a href="/upload">Get Started</a>
+                </button>
+                <div class="description p-6 bg-white rounded-lg shadow-lg mx-auto max-w-4xl">
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">
+                        Machine Learning Technologies Used
+                    </h2>
 
                     <div class="space-y-6">
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <!-- Description Items -->
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong
                                 class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">TensorFlow:</strong>
-                            <p class="text-gray-700 md:ml-4 md:w-3/4">We have trained our models using TensorFlow, an
-                                open-source framework
-                                developed by Google. It provides a comprehensive ecosystem for building and deploying
-                                machine learning
-                                models, particularly deep learning models.</p>
+                            <p class="text-gray-700 md:ml-4 md:w-3/4">We have trained our models using TensorFlow, a
+                                powerful open-source machine learning framework. TensorFlow’s flexibility and
+                                scalability make it ideal for both research and production.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Keras:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">Keras, a high-level API for TensorFlow, simplifies
-                                the process of
-                                designing and training neural networks. It is used for rapid prototyping and
-                                experimentation with deep
-                                learning architectures.</p>
+                                the creation and training of neural networks. Its user-friendly interface helps us
+                                rapidly prototype and test models.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong
                                 class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Scikit-Learn:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">Scikit-Learn provides simple and efficient tools
-                                for data analysis and
-                                traditional machine learning tasks, including classification, regression, and
-                                clustering.</p>
+                                for data mining and data analysis. It is used for implementing various machine learning
+                                algorithms and evaluating their performance.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">PyTorch:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">PyTorch, developed by Facebook’s AI Research lab,
-                                is known for its
-                                dynamic computation graph. It offers flexibility in building and modifying models,
-                                making it suitable for
-                                both research and production.</p>
+                                offers a dynamic computation graph, which allows for flexible and fast experimentation
+                                with neural network architectures.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Natural Language
-                                Processing
-                                (NLP):</strong>
+                                Processing (NLP):</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">We use NLP techniques to analyze and understand
-                                text data. This
-                                includes tasks like sentiment analysis, text classification, and entity recognition.</p>
+                                text data, enhancing the interaction between users and our application through features
+                                like text classification and sentiment analysis.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Data
                                 Preprocessing:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">Data preprocessing is crucial for preparing raw
-                                data for machine
-                                learning models. This includes data cleaning, normalization, and feature engineering to
-                                enhance model
-                                performance.</p>
+                                data for analysis. It includes steps like cleaning, normalization, and transformation to
+                                ensure data quality and consistency.</p>
                         </div>
 
-                        <div class="flex flex-col md:flex-row md:items-start">
+                        <div class="flex flex-col md:flex-row items-start">
                             <strong class="text-lg font-semibold text-gray-900 flex-shrink-0 md:w-1/4">Model
                                 Evaluation:</strong>
                             <p class="text-gray-700 md:ml-4 md:w-3/4">We employ various techniques for evaluating model
-                                performance,
-                                including cross-validation, confusion matrices, and performance metrics such as
-                                accuracy, precision, and
-                                recall.</p>
+                                performance, including metrics like accuracy, precision, recall, and F1 score, to ensure
+                                our models are effective and reliable.</p>
                         </div>
                     </div>
 
@@ -230,9 +133,9 @@
 
         window.addEventListener("scroll", () => {
             if (window.scrollY > 200) {
-                arrowUp.classList.add("visible");
+                arrowUp.classList.remove("hidden");
             } else {
-                arrowUp.classList.remove("visible");
+                arrowUp.classList.add("hidden");
             }
         });
 
@@ -245,12 +148,12 @@
 
         // Toggle the side menu on menu icon click
         menuIcon.addEventListener("click", () => {
-            sideMenu.classList.add("open");
+            sideMenu.classList.toggle("-translate-x-full");
         });
 
         // Close the side menu on close button click
         closeButton.addEventListener("click", () => {
-            sideMenu.classList.remove("open");
+            sideMenu.classList.add("-translate-x-full");
         });
     </script>
 </body>
