@@ -19,11 +19,10 @@
             position: relative;
             min-height: 100vh;
             width: 100%;
-            /* background-color: black; */
             background-size: 20px 20px;
         }
 
-        .arrow-down {
+        .arrow-up {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -33,12 +32,10 @@
             border-radius: 50%;
             cursor: pointer;
             display: none;
-            /* Hidden initially */
             z-index: 1000;
-            /* Ensure it is above other content */
         }
 
-        .arrow-down.visible {
+        .arrow-up.visible {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -49,46 +46,40 @@
             width: 100%;
             background: #fff;
             position: fixed;
-            /* Make it fixed to the viewport */
             top: 0;
             left: 0;
             transform: translateY(-100%);
-            /* Start off-screen */
             transition: transform 0.5s ease-out;
             z-index: 999;
-            /* Ensure it is below the arrow */
         }
 
         .menu-down.show {
             transform: translateY(0);
-            /* Slide into view */
         }
-
-        /*  */
     </style>
 </head>
 
 <body>
-    <div class="container  ">
-        <div class="navbar  flex px-6 py-6 justify-between text-blue-500 border-b  ">
-            <div class="logo font-bold text-xl ">DFDetect</div>
+    <div class="container">
+        <div class="navbar flex px-6 py-6 justify-between text-blue-500 border-b">
+            <div class="logo font-bold text-xl">DiseaseDetect</div>
             <div class="menu-icon"><i class="fa-solid fa-bars"></i></div>
         </div>
-        <div class="arrow-down">
-            <i class="fa-solid fa-arrow-down text-black px-2 py-2 border rounded-full"></i>
+        <div class="arrow-up">
+            <i class="fa-solid fa-arrow-up text-black px-2 py-2 border rounded-full"></i>
         </div>
         <div class="menu-down">
             <!-- Your menu content goes here -->
             <p>Menu Content</p>
         </div>
         <div class="content4">
-            <div class="intro-text    px-6 py-4">
-                <div class="text-5xl mt-8   font-bold"><span class="text-blue-500">DETECT</span> <br> DEEPFAKES
+            <div class="intro-text px-6 py-4">
+                <div class="text-5xl mt-8 font-bold"><span class="text-blue-500">DETECT</span> <br> DISEASES
                 </div>
 
                 <button class="my-4 border px-6 py-2 bg-blue-500 text-white text-xl rounded-full"><a href="/upload">Get
                         Started</a></button>
-                <div class="description p-8 bg-gray-100 rounded-lg shadow-lg  mx-auto max-w-4xl">
+                <div class="description p-8 bg-gray-100 rounded-lg shadow-lg mx-auto max-w-4xl">
                     <h2 class="text-3xl font-extrabold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">Machine
                         Learning Technologies
                         Used</h2>
@@ -171,19 +162,21 @@
         integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        const arrowDown = document.querySelector(".arrow-down");
-        const menuDown = document.querySelector(".menu-down");
+        const arrowUp = document.querySelector(".arrow-up");
 
         window.addEventListener("scroll", () => {
             if (window.scrollY > 200) {
-                arrowDown.classList.add("visible");
+                arrowUp.classList.add("visible");
             } else {
-                arrowDown.classList.remove("visible");
+                arrowUp.classList.remove("visible");
             }
         });
 
-        arrowDown.addEventListener("click", () => {
-            menuDown.classList.toggle("show");
+        arrowUp.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
