@@ -10,9 +10,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'Deepfake',
-        allowedFormats: ['mp4', 'mov', 'avi', 'wmv', 'flv'],
-        resource_type: "video"
+        folder: 'Disease',
+        allowedFormats: ['jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff', 'avif', 'jfif', 'jpg', 'svg'],
+        resource_type: "image"
     }
 });
 

@@ -37,15 +37,19 @@ app.get("/upload", (req, res) => {
     res.render("upload")
 })
 
-app.post("/upload", upload.single("deepfake"), async (req, res) => {
+app.post("/upload", upload.single("disease"), async (req, res) => {
     try {
+        // console.log(req.body);
+        console.log(req.file);
+
         if (!req.file.path) {
             throw new Error("Something went wrong")
         }
+        console.log(req.file)
         const { path } = req.file
         const predcition = new Prediction({
             result: "This is a placeholder for result hahahahaha lol",
-            video: path
+            image: path
         })
         await predcition.save()
 

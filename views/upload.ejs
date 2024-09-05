@@ -113,7 +113,7 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-gray-800 bg-opacity-80 z-50 lg:hidden transform translate-x-full transition-transform duration-300">
+        class="fixed inset-0 bg-gray-800   z-50 lg:hidden transform translate-x-full transition-transform duration-300">
         <div class="flex justify-end p-4">
             <button id="close-menu" class="text-white text-2xl">
                 <i class="fa-solid fa-xmark"></i>
@@ -128,7 +128,7 @@
     </div>
 
     <!-- Example Section -->
-    <section class="example font-medium mt-6 px-6 text-center lg:text-left text-sm lg:text-lg">
+    <section class="example  mt-6 px-6 text-center lg:text-left text-xl font-bold lg:text-lg my-4 ">
         Example of Plant Diseases
     </section>
 
@@ -140,49 +140,49 @@
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
                     alt="Black Spot">
-                <div class="overlay">Black Spot</div>
+                <div class="overlay font-bold">Black Spot</div>
             </div>
             <!-- Slide 2 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335"
                     alt="Tobacco Mosaic Virus">
-                <div class="overlay">Tobacco Mosaic Virus</div>
+                <div class="overlay font-bold">Tobacco Mosaic Virus</div>
             </div>
             <!-- Slide 3 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335"
-                    alt="Fusarium Wilt">
-                <div class="overlay">Fusarium Wilt</div>
+                    alt="Fusarium Wilt font-bold">
+                <div class="overlay font-bold">Fusarium Wilt</div>
             </div>
             <!-- Slide 4 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335"
                     alt="Verticillium Fungi">
-                <div class="overlay">Verticillium Fungi</div>
+                <div class="overlay font-bold">Verticillium Fungi</div>
             </div>
             <!-- Slide 5 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335"
                     alt="Sooty Mold">
-                <div class="overlay">Sooty Mold</div>
+                <div class="overlay font-bold">Sooty Mold</div>
             </div>
             <!-- Slide 6 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335"
                     alt="Snow Mold">
-                <div class="overlay">Snow Mold</div>
+                <div class="overlay font-bold">Snow Mold</div>
             </div>
             <!-- Slide 7 -->
             <div class="slide flex items-center justify-center text-3xl">
                 <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335"
                     alt="Rust">
-                <div class="overlay">Rust</div>
+                <div class="overlay font-bold">Rust</div>
             </div>
             <!-- Slide 8 -->
             <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Powdery-Mildew-GettyImages-1090508010.jpg?fit=335,335"
+                <img src="https://youhadmeatgardening.com/wp-content/uploads/2020/11/powdery-mildrew-plant-disease.webp"
                     alt="Powdery Mildew">
-                <div class="overlay">Powdery Mildew</div>
+                <div class="overlay font-bold">Powdery Mildew</div>
             </div>
         </div>
         <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
@@ -191,7 +191,7 @@
     <!-- Form Section -->
     <section class="flex flex-col justify-center items-center mt-4 px-4 lg:px-0">
         <form action="/upload" method="POST" enctype="multipart/form-data" class="flex flex-col items-center space-y-4">
-            <input type="file" name="image" accept="image/*"
+            <input type="file" name="disease" accept="image/*"
                 class="file-input py-2 px-4 border border-gray-300 rounded-md">
             <button type="submit"
                 class="submit-btn bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition-colors">Submit</button>
