@@ -18,7 +18,7 @@ const upload = multer({ storage });
 
 //
 //*connect
-mongoose.connect("mongodb://127.0.0.1:27017/deepfakeDB").then(() => {
+mongoose.connect("mongodb://127.0.0.1:27017/plantDiseaseDB").then(() => {
     console.log("mongodb up")
 }).catch((error) => {
     console.log(error, "error")
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.get("/info", (req, res) => {
     res.render("info")
 })
-app.get("/result", (req, res) => {
+app.get("/info/result", (req, res) => {
     res.render("result")
 })
 app.post("/upload", upload.single("disease"), async (req, res) => {
