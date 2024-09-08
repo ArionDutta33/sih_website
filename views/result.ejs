@@ -16,7 +16,7 @@
 
 <body class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
-        <form class="space-y-4">
+        <form class="space-y-4" enctype="multipart/form-data" method="POST" action="/upload">
             <div id="upload-container"
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                 <label for="file-upload" class="flex flex-col items-center justify-center w-full h-full">
@@ -28,7 +28,7 @@
                     <p id="upload-text" class="text-sm text-gray-500"><span class="font-semibold">Click to upload</span>
                         or drag and drop</p>
                     <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                    <input id="file-upload" type="file" class="hidden" />
+                    <input id="file-upload" type="file" name="disease" class="hidden" />
                 </label>
             </div>
             <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" disabled

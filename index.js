@@ -41,27 +41,25 @@ app.get("/info/result", (req, res) => {
 })
 app.post("/upload", upload.single("disease"), async (req, res) => {
     try {
-        // console.log(req.body);
-        console.log(req.file);
-
-        if (!req.file.path) {
-            throw new Error("Something went wrong")
+        if (!req.file) {
+            return res.status(400).json({ error: "File upload failed!" });
         }
-        console.log(req.file)
-        const { path } = req.file
-        const predcition = new Prediction({
+
+        const { path } = req.file;
+        const prediction = new Prediction({
             result: "This is a placeholder for result hahahahaha lol",
             image: path
-        })
-        await predcition.save()
+        });
 
-        console.log(predcition)
-        return res.redirect("/result")
+        await prediction.save();
+
+        return res.json(prediction);
     } catch (error) {
-        console.log("error", error)
-        throw new Error("Something went wrong")
+        console.error("Error:", error);
+        return res.status(500).json({ error: "Something went wrong" });
     }
-})
+});
+
 
 
 
