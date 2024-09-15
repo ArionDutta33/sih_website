@@ -4,224 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Slider Example</title>
-    <link rel="stylesheet" href="../css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Plant Disease Examples</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        .slider-container {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .slider {
+        .slider-button {
+            @apply absolute top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500;
+            width: 2.5rem;
+            height: 2.5rem;
             display: flex;
-            transition: transform 0.5s ease;
+            align-items: center;
+            justify-content: center;
         }
 
-        .slide {
-            min-width: 100%;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .slide img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: background 0.3s ease;
-        }
-
-        .arrow-left {
-            left: 1rem;
-        }
-
-        .arrow-right {
-            right: 1rem;
-        }
-
-        .arrow:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-align: center;
-            padding: 1rem;
+        .slider-button i {
+            @apply text-gray-600;
             font-size: 1.5rem;
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 1024px) {
-            .arrow {
-                font-size: 1.5rem;
-                padding: 0.3rem;
-            }
-
-            .overlay {
-                font-size: 1.2rem;
-                padding: 0.8rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .overlay {
-                font-size: 1rem;
-                padding: 0.6rem;
-            }
         }
     </style>
 </head>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar flex items-center justify-between py-4 border-b border-gray-300 px-4 lg:px-8">
-        <div class="logo font-bold text-xl text-blue-500">Disease <span class="text-black">Detect</span></div>
-        <div class="hidden lg:flex items-center space-x-6">
-            <a href="/" class="text-lg hover:text-blue-500">Home</a>
-            <a href="/about" class="text-lg hover:text-blue-500">About</a>
-            <a href="/services" class="text-lg hover:text-blue-500">Services</a>
-            <a href="/contact" class="text-lg hover:text-blue-500">Contact</a>
-        </div>
-        <button class="menu-icon text-2xl cursor-pointer text-blue-500 lg:hidden">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="fixed inset-0 bg-gray-800   z-50 lg:hidden transform translate-x-full transition-transform duration-300">
-        <div class="flex justify-end p-4">
-            <button id="close-menu" class="text-white text-2xl">
-                <i class="fa-solid fa-xmark"></i>
+    <!-- Header -->
+    <header class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">
+                <span class="text-blue-600">Disease</span>
+                <span class="text-gray-900">Detect</span>
+            </h1>
+            <nav class="hidden md:flex space-x-4">
+                <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="/about" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="/services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <a href="/contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold text-center mb-8">Plant Disease Examples</h2>
+
+        <!-- Slider -->
+        <div class="relative max-w-2xl mx-auto mb-12">
+            <div class="relative aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden">
+                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
+                    alt="Black Spot" class="object-cover w-full h-full" />
+                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                    <h3 class="text-xl font-semibold">Black Spot</h3>
+                </div>
+            </div>
+            <button onclick="prevSlide()" class="slider-button left-4">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="slider-button right-4">
+                <i class="fas fa-chevron-right"></i>
             </button>
         </div>
-        <div class="flex flex-col items-center">
-            <a href="/" class="text-white text-xl py-4 hover:text-blue-500">Home</a>
-            <a href="/about" class="text-white text-xl py-4 hover:text-blue-500">About</a>
-            <a href="/services" class="text-white text-xl py-4 hover:text-blue-500">Services</a>
-            <a href="/contact" class="text-white text-xl py-4 hover:text-blue-500">Contact</a>
+
+        <!-- Upload Section -->
+        <div class="text-center">
+            <h2 class="text-2xl font-bold mb-4">Analyze Your Plant</h2>
+            <p class="text-lg text-gray-700 mb-6">Upload a picture of your plant to get an instant disease diagnosis.
+            </p>
+            <a href="/info/upload">
+                <button
+                    class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <i class="fas fa-upload mr-2"></i>
+                    Upload a Picture
+                </button>
+            </a>
         </div>
-    </div>
+    </main>
 
-    <!-- Example Section -->
-    <section class="example  mt-6 px-6 text-center lg:text-left text-xl font-bold lg:text-lg my-4 ">
-        Example of Plant Diseases
-    </section>
-
-    <!-- Slider -->
-    <section class="slider-container relative overflow-hidden mt-6 mx-4 lg:mx-6">
-        <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
-        <div class="slider">
-            <!-- Slide 1 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335"
-                    alt="Black Spot">
-                <div class="overlay font-bold">Black Spot</div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335"
-                    alt="Tobacco Mosaic Virus">
-                <div class="overlay font-bold">Tobacco Mosaic Virus</div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335"
-                    alt="Fusarium Wilt font-bold">
-                <div class="overlay font-bold">Fusarium Wilt</div>
-            </div>
-            <!-- Slide 4 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335"
-                    alt="Verticillium Fungi">
-                <div class="overlay font-bold">Verticillium Fungi</div>
-            </div>
-            <!-- Slide 5 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335"
-                    alt="Sooty Mold">
-                <div class="overlay font-bold">Sooty Mold</div>
-            </div>
-            <!-- Slide 6 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335"
-                    alt="Snow Mold">
-                <div class="overlay font-bold">Snow Mold</div>
-            </div>
-            <!-- Slide 7 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335"
-                    alt="Rust">
-                <div class="overlay font-bold">Rust</div>
-            </div>
-            <!-- Slide 8 -->
-            <div class="slide flex items-center justify-center text-3xl">
-                <img src="https://youhadmeatgardening.com/wp-content/uploads/2020/11/powdery-mildrew-plant-disease.webp"
-                    alt="Powdery Mildew">
-                <div class="overlay font-bold">Powdery Mildew</div>
-            </div>
-        </div>
-        <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
-    </section>
-
-    <!-- Form Section -->
-    <!-- show the user uploaded -->
-    <div class="border flex justify-center mt-4 "><button class="bg-blue-500 px-4 py-2 rounded-lg text-sm text-white"><a
-                href="/info/result">Upload a
-                picture</a></button></div>
+    <!-- Footer -->
+    <footer class="bg-white mt-auto py-4 text-center text-gray-500 text-sm">
+        &copy; 2024 DiseaseDetect. All rights reserved.
+    </footer>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        let index = 0;
+        let currentSlide = 0;
+        const slides = [
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Black-Spot-Diplocarpon-rosae-GettyImages-1097545284.jpg?fit=335,335", title: "Black Spot" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Tobacco-Mosaic-Virus-GettyImages-1200783801.jpg?fit=335,335", title: "Tobacco Mosaic Virus" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Fusarium-Wilt-GettyImages-1221194369.jpg?fit=335,335", title: "Fusarium Wilt" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Verticillium-fungi-GettyImages-1042492416-1.jpg?fit=335,335", title: "Verticillium Fungi" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Sooty-Mold-GettyImages-1147925067.jpg?fit=335,335", title: "Sooty Mold" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Snow-Mold-GettyImages-467729840.jpg?fit=335,335", title: "Snow Mold" },
+            { image: "https://www.familyhandyman.com/wp-content/uploads/2020/05/Rust-GettyImages-694659917.jpg?fit=335,335", title: "Rust" },
+            { image: "https://youhadmeatgardening.com/wp-content/uploads/2020/11/powdery-mildrew-plant-disease.webp", title: "Powdery Mildew" },
+        ];
 
-        function showSlide(n) {
-            if (n >= slides.length) index = 0;
-            else if (n < 0) index = slides.length - 1;
-            else index = n;
-
-            const offset = -index * 100;
-            document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+        function updateSlide() {
+            const img = document.querySelector('.relative img');
+            const title = document.querySelector('.absolute h3');
+            img.src = slides[currentSlide].image;
+            title.textContent = slides[currentSlide].title;
         }
 
         function nextSlide() {
-            showSlide(index + 1);
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide();
         }
 
         function prevSlide() {
-            showSlide(index - 1);
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide();
         }
 
-        document.querySelector('#close-menu').addEventListener('click', () => {
-            document.querySelector('#mobile-menu').style.transform = 'translateX(100%)';
-        });
-
-        document.querySelector('.menu-icon').addEventListener('click', () => {
-            document.querySelector('#mobile-menu').style.transform = 'translateX(0)';
-        });
+        document.querySelector('.slider-button.left-4').addEventListener('click', prevSlide);
+        document.querySelector('.slider-button.right-4').addEventListener('click', nextSlide);
     </script>
 </body>
 

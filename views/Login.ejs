@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="font-sans flex items-center justify-center min-h-screen bg-gray-100 text-gray-800">
+
+    <div class="w-full max-w-md">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-center text-gray-800 text-2xl font-semibold mb-6">Register</h2>
+            <form class="flex flex-col" action="/register" method="POST">
+                <input type="text" id="email" name="email" placeholder="Email" required
+                    class="p-3 mb-3 border border-gray-300 rounded focus:border-gray-600 outline-none transition-colors duration-300">
+                <input type="text" id="password" name="password" placeholder="Password" required
+                    class="p-3 mb-3 border border-gray-300 rounded focus:border-gray-600 outline-none transition-colors duration-300">
+
+                <button type="submit"
+                    class="bg-blue-500 text-white p-3 rounded cursor-pointer transition-colors duration-300 hover:bg-blue-600">
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
